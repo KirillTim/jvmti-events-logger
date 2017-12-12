@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.9)
+project(jvmti_events_logger CXX)
+
+set(CMAKE_CXX_STANDARD 14)
+
+set(OUTDIR ${PROJECT_BINARY_DIR}/out)
+set(LIBRARY_OUTPUT_PATH ${OUTDIR})
+
+find_package(JNI)
+if (JNI_FOUND)
+    message (STATUS "JNI_INCLUDE_DIRS=${JNI_INCLUDE_DIRS}")
+    message (STATUS "JNI_LIBRARIES=${JNI_LIBRARIES}")
+    message (STATUS "JAVA_INCLUDE_PATH=${JAVA_INCLUDE_PATH}")
+    message (STATUS "JAVA_INCLUDE_PATH2=${JAVA_INCLUDE_PATH2}")
+endif()
+INCLUDE_DIRECTORIES(${JAVA_INCLUDE_PATH})
+INCLUDE_DIRECTORIES(${JAVA_INCLUDE_PATH2})
+
+add_library(jvmti_events_logger SHARED src/logger.cpp)
